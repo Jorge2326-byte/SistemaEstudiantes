@@ -1,0 +1,54 @@
+{% extends "base.html" %} <!-- Hereda el layout base -->
+
+{% block title %}Listado de Estudiantes{% endblock %} <!-- Título de pestaña -->
+
+{% block content %}
+  <div class="card shadow-sm"> <!-- Tarjeta visual -->
+    <div class="card-body">
+      <h1 class="h4 mb-3">Listado de Estudiantes</h1>
+
+      <div class="table-responsive"> <!-- Tabla responsiva -->
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th class="text-end">Acciones</th> <!-- Columna de botones -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in estudiantes %} <!-- Recorre lista [(id, nombre, correo), ...] -->
+            <tr>
+              <td>{{ e[0] }}</td>  <!-- id -->
+              <td>{{ e[1] }}</td>  <!-- nombre -->
+              <td>{{ e[2] }}</td>  <!-- correo -->
+              <td class="text-end">
+                <!-- Botón cursos: usa e[0] (id del estudiante) -->
+                <a class="btn btn-sm btn-info"
+                   href="{{ url_for('cursos_estudiante', estudiante_id=e[0]) }}">🎓 Cursos</a>
+
+                <!-- Botón editar -->
+                <a class="btn btn-sm btn-warning"
+                   href="{{ url_for('edit', estudiante_id=e[0]) }}">✏️ Editar</a>
+
+                <!-- Botón borrar -->
+                <form class="d-inline" method="post"
+                      action="{{ url_for('delete', estudiante_id=e[0]) }}"
+                      onsubmit="return confirm('¿Deseas eliminar este estudiante?');">
+                  <button class="btn btn-sm btn-danger" type="submit">🗑️ Eliminar</button>
+                </form>
+              </td>
+            </tr>
+            {% else %}
+            <!-- Si la lista está vacía, muestra mensaje -->
+            <tr>
+              <td colspan="4" class="text-center text-muted">No hay estudiantes registrados.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

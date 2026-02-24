@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Cursos{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h4 mb-3">Listado de Cursos</h1>
+
+        {% if cursos %}
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Código</th>
+                        <th>Créditos</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso[0] }}</td>
+                        <td>{{ curso[1] }}</td>
+                        <td>{{ curso[2] if curso[2] else '<span class="text-muted">N/A</span>' | safe }}</td>
+                        <td>{{ curso[3] }}</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-info" href="{{ url_for('estudiantes_curso', curso_id=curso[0]) }}">
+                                👥 Ver Estudiantes
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            <p class="mb-0">No hay cursos registrados.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+ 

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Editar Estudiante{% endblock %}
+{% block content %}
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="h4 mb-3">Editar Estudiante</h1>
+      <!-- method="post": actualiza registro en /edit/<id> -->
+      <form method="post" class="row g-3">
+        <div class="col-md-6">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input id="nombre" name="nombre" type="text" class="form-control" value="{{ estudiante[1] }}" required>
+          <!-- estudiante[1] = nombre actual -->
+        </div>
+        <div class="col-md-6">
+          <label for="correo" class="form-label">Correo</label>
+          <input id="correo" name="correo" type="email" class="form-control" value="{{ estudiante[2] }}" required>
+          <!-- estudiante[2] = correo actual -->
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Actualizar</button>
+          <a class="btn btn-secondary" href="{{ url_for('index') }}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

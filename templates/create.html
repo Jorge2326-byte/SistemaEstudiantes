@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Estudiante{% endblock %}
+{% block content %}
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="h4 mb-3">Agregar Estudiante</h1>
+      <!-- method="post": envía datos a la misma ruta /create -->
+      <form method="post" class="row g-3">
+        <div class="col-md-6">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input id="nombre" name="nombre" type="text" class="form-control" required>
+          <!-- name="nombre" debe coincidir con request.form['nombre'] -->
+        </div>
+        <div class="col-md-6">
+          <label for="correo" class="form-label">Correo</label>
+          <input id="correo" name="correo" type="email" class="form-control" required>
+          <!-- name="correo" debe coincidir con request.form['correo'] -->
+        </div>
+        <div class="col-12">
+          <button class="btn btn-success" type="submit">Guardar</button>
+          <a class="btn btn-secondary" href="{{ url_for('index') }}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

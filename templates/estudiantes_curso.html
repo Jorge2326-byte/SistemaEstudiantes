@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}Estudiantes de {{ curso[1] }}{% endblock %}
+
+
+
+{% block content %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h1 class="h4 mb-3">Estudiantes inscritos en: {{ curso[1] }} ({{ curso[2] }})</h1>
+
+
+
+        <div class="mb-3">
+
+            <a href="{{ url_for('listar_cursos') }}" class="btn btn-primary">
+
+                🔙 Volver a Cursos
+
+            </a>
+
+        </div>
+
+
+
+        {% if estudiantes_inscritos %}
+
+        <div class="table-responsive">
+
+            <table class="table table-striped align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Nombre</th>
+
+                        <th>Correo</th>
+
+                        <th class="text-end">Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for estudiante in estudiantes_inscritos %}
+
+                    <tr>
+
+                        <td>{{ estudiante[0] }}</td>
+
+                        <td>{{ estudiante[1] }}</td>
+
+                        <td>{{ estudiante[2] }}</td>
+
+                        <td class="text-end">
+
+                            <a class="btn btn-sm btn-info"
+
+                               href="{{ url_for('cursos_estudiante', estudiante_id=estudiante[0]) }}">
+
+                                👁 Ver Cursos
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="alert alert-warning text-center" role="alert">
+
+            <p class="mb-0">No hay estudiantes inscritos en este curso.</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
