@@ -23,7 +23,7 @@ DB_CONFIG = {
     "user": os.getenv("DB_USER", "root"),
     "password": os.getenv("DB_PASS", ""),
     "database": os.getenv("DB_NAME", "sistema_estudiantes"),
-    "port": int(os.getenv("DB_PORT", "3307")),
+    "port": int(os.getenv("DB_PORT", "3306")),
 }
 
 # Función para obtener conexión a la base de datos
