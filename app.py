@@ -22,7 +22,7 @@ DB_CONFIG = {
     "host": os.getenv("DB_HOST", "localhost"),
     "user": os.getenv("DB_USER", "root"),
     "password": os.getenv("DB_PASS", ""),
-    "database": os.getenv("DB_NAME", "sistema_estudiantes"),
+    "database": os.getenv("DB_NAME", "b5ry5yh5mics4u97jcfv"),
     "port": int(os.getenv("DB_PORT", "3306")),
 }
 
